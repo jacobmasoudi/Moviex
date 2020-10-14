@@ -1,0 +1,36 @@
+<!------ Include the above in your HEAD tag ---------->
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1 style="color: red">Movie Not found</h1>
+    <a
+      href="{% url 'movies:index' %}"
+      style="
+        text-decoration: darkgreen;
+        font-family: 'Times New Roman', Times, serif;
+      "
+    >
+      >> back to the search page
+    </a>
+  </body>
+</html>
+{% endblock %}

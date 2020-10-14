@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% block content %}
+<head>
+  <link
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    id="bootstrap-css"
+  />
+</head>
+{{request.session.first_name}}'s list
+<table class="table table-boardered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Duration</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in page_obj %}
+    <tr>
+      <th><a href="">{{movie.title}}</a></th>
+      <th>{{movie.genre}}</th>
+      <th>{{movie.run_time}}</th>
+      <th>
+        <a href="{% url 'movies:delete_movie' movie.id %}">Delete</a>
+        <a href="{% url 'movies:edit_movie' movie.id %}">Edit</a>
+      </th>
+      <th></th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% comment %} <div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div> {% endcomment %}
+
+<ul class="pagination justify-content-center">
+  {% if page_obj.has_previous %}
+  <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+  <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+  {% endif %}
+  {% comment %} <span class="current">
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+  </span> {% endcomment %}
+  {% if page_obj.has_next %}
+  <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">1</a></li>
+  <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">2</a></li>
+  <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">3</a></li>
+  <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+  <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+  {% endif %}
+</ul>
+
+{% endblock %}

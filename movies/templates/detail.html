@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}     {% load static %}
+<link rel="stylesheet" href="static/style.css">
+<h3>{{ movie.Title}}</h3>  
+<dl><div style="display:flex; flex-direction: row; justify-content:space-between;">
+  <div class='left'>
+    
+    <br />
+    <dd><img height="500px" src="{{movie.Poster}}" alt="" /></dd>
+  </div>
+  <div class="right">
+    <dt>Genre</dt>
+    <dd>{{ movie.Genre}}</dd>
+    <dt>Actors</dt>
+    <dd>{{ movie.Actors}}</dd>
+    <dt>Awards</dt>
+    <dd>{{ movie.Awards}}</dd>
+    <dt>Released</dt>
+    <dd>{{ movie.Released}}</dd>
+    <dt>Runtime</dt>
+    <dd>{{ movie.Runtime}}</dd>
+    <dt>Language</dt>
+    <dd>{{ movie.Language}}</dd>
+    <dt>Country</dt>
+    <dd>{{ movie.Country}}</dd>
+    <dt>Writer</dt>
+    <dd>{{ movie.Writer}}</dd>
+    <dt>Director</dt>
+    <dd>{{ movie.Director}}</dd>
+  </div>
+</div>
+  <form action="add_movie" method="POST">
+  {% csrf_token%}
+</dl>
+<!-- <label><input type="submit" value="{{movie.Title}}" name="movie_title"/></label> -->
+{% comment %} <button type="submit" value="{{movie.Title}}" name="movie_title" > Add to List</button> {% endcomment %}
+<button type="submit"  class="btn btn-outline-success" value="{{movie.Title}}" name="movie_title" style="margin-top:5px">Add to List</button>
+</form>
+{% endblock %}

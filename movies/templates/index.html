@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %} {% load socialaccount %}
+
+ {% comment %} <form action="result" method="POST">
+  {% csrf_token%}
+  <input type="text" name="one" /><br /><br />
+  <label><input type="submit" value="search" /></label>
+</form>  {% endcomment %}
+
+<h1 style="font-family: Times New Roman">Welcome {{request.session.first_name}}, </h1>
+<!-- <h1>Success ! Welcome, {{user.socialaccount_set.all.0.extra_data.name}}</h1><img src="{{user.socialaccount_set.all.0.extra_data.picture}}" alt=""> -->
+<div class="container">
+    <br/>
+	<div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                        <form action="result" method="POST">
+                                    {% csrf_token%}
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search movies or keywords" name="one">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-lg btn-success" type="submit" >Search</button>
+                                    </div>
+                                    
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                        </form>
+                </div>
+</div>
+{% endblock %}

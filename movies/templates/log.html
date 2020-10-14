@@ -1,0 +1,160 @@
+{% comment %} 
+<head>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+  </head>
+{% block content %} {% load socialaccount %}
+{% providers_media_js %}
+{% if messages %}
+
+<ul class="messages">    
+    {% for message in messages %}    
+        <li  style= "color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="register" method="post">
+            {% csrf_token%}
+        <h1>Registration</h1>
+        <label >First Name : <input type="text" name="first_name" ></label><br />
+        <label > Last Name : <input type="text" name="last_name" ></label><br />
+        <label >Birthday : <input type="date" name="birthday"></label><br />
+        <label > Email : <input type="email" name="email" ></label><br />
+        <label > Password : <input type="password" name="password" ></label><br />     
+        <label > Confirm PW : <input type="password" name="confirm_password" ></label><br />  
+        <input type="submit" value="register" ><br /> 
+        </form>
+        <h1> Login</h1>
+        <form action="login"  method="POST">
+                {% csrf_token%}
+        <label >Email : <input type="email" name="email" ></label><br />
+        <label >Password : <input type="password" name="password" ></label><br />
+        <input type="submit" value="login" >
+        <h2> OR</h2>
+        <div class="col s12 m6 offset-m3 center-align" >
+            <a class="oauth-container btn darken-4 white black-text" style="background: dark grey"  style="text-transform:none" href="{% provider_login_url "google" %}">
+                <div class="left">
+                    <img width="20px" style="margin-top:7px; margin-right:8px;" alt="Google sign-in" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />Login with Google
+                </div>
+            </a>
+        </div>
+    </div>
+</form>
+</body> {% endcomment %}
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+{% comment %} {% endblock %} {% endcomment %} 
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- Material form register -->
+<div style="flex-direction: row; justify-content: center; align-content: center; align-items: center; display:flex; height: 100vh; background-size: cover; background-image:url({% static "images/IMG_8198.jpg" %});">
+<div class="card" >
+
+    <h5 class="card-header info-color white-text text-center py-4 ">
+        <strong>Sign up</strong>
+    </h5>
+    <div class="test"></div>
+    <!--Card content-->
+    <div class="card-body px-lg-3 pt-0">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;" action="register" method="post">
+            {% csrf_token%}
+
+            <div class="form-row">
+                <div class="col">
+                    <!-- First name -->
+                    <div class="md-form">
+                        <input type="text" id="materialRegisterFormFirstName" class="form-control" name="first_name">
+                        <label for="materialRegisterFormFirstName">First name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <div class="md-form">
+                        <input type="text" id="materialRegisterFormLastName" class="form-control" name="last_name">
+                        <label for="materialRegisterFormLastName">Last name</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+
+            <div class="md-form mt-0">
+                <input type="email" id="materialRegisterFormEmail" class="form-control" name="email">
+                <label for="materialRegisterFormEmail">Email</label>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+                <input type="password" id="materialRegisterFormPassword" class="form-control" name="password"  aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <label for="materialRegisterFormPassword">Password</label>
+                <!-- <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    At least 8 characters and 1 digit
+                </small> -->
+            </div>
+
+            <!-- confirm password -->
+            <div class="md-form">
+                <input type="password" id="materialRegisterFormPassword" class="form-control"  name="confirm_password" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <label for="materialRegisterFormPassword"> Confirm Password</label>
+                <!-- <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    At least 8 characters and 1 digit
+                </small> -->
+            </div>
+
+            <!-- Newsletter
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter">
+                <label class="form-check-label" for="materialRegisterFormNewsletter">Subscribe to our newsletter</label>
+            </div> -->
+
+            <!-- Sign up button -->
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign up</button>
+
+
+            <p>ALready a member
+                <a href="{% url 'movies:loginform' %}">Sign in </a>
+              </p>
+
+            <!-- Social register -->
+            <!-- <p>or sign up with:</p>
+
+            <a type="button" class="btn-floating btn-fb btn-sm">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a type="button" class="btn-floating btn-tw btn-sm">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a type="button" class="btn-floating btn-li btn-sm">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a type="button" class="btn-floating btn-git btn-sm">
+                <i class="fab fa-github"></i>
+            </a>
+
+            <hr> -->
+
+        </form>
+        <!-- Form -->
+
+    </div>
+    </div>
+
+</div>
