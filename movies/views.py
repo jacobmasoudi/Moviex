@@ -12,6 +12,8 @@ from django.contrib import admin, auth
 url = "http://omdbapi.com/?apikey="
 api_key = "a6875c33"
 
+# hello
+
 
 def index(request):
     user = User.objects.get(id=request.session['user_id'])
